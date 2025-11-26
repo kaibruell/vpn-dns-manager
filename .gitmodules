@@ -1,0 +1,6 @@
+[submodule "container-modules/coredns"]
+	path = container-modules/coredns
+	url = https://github.com/kaibruell/coredns
+[submodule "container-modules/docker-wireguard"]
+	path = container-modules/docker-wireguard
+	url = https://github.com/kaibruell/docker-wireguard
