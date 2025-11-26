@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.wireguard.container'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    archiveFileName = 'wireguard-launcher.jar'
+    manifest {
+        attributes 'Main-Class': 'org.wireguard.container.WireGuardLauncher'
+    }
+}

@@ -1,0 +1,5 @@
+java/container-modules/wireguard/build
+java/container-modules/wireguard/.gradle
+
+documentation/
+volumes/
