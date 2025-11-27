@@ -1,5 +1,9 @@
 java/container-modules/wireguard/build
 java/container-modules/wireguard/.gradle
 
+java/container-modules/coredns/build
+java/container-modules/coredns/.gradle
+
+
 documentation/
 volumes/
