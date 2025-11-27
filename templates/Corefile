@@ -1,0 +1,16 @@
+. {
+    # Enable IP blocking plugin
+    ipblocker
+
+    # Forward all queries to public DNS servers
+    forward . 8.8.8.8 8.8.4.4 1.1.1.1
+
+    # Enable caching
+    cache 300
+
+    # Enable logging
+    log
+
+    # Handle errors
+    errors
+}

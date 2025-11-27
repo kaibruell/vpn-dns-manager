@@ -13,9 +13,25 @@ mkdir -p $wireguard_lib_dir
 cp -r wireguard-launcher.jar "$wireguard_lib_dir"
 cd $root_dir
 
+
+
+
+
 cd container-modules/coredns
+
+# Add ipblocker plugin to plugin.cfg after acl
+if ! grep -q "ipblocker:ipblocker" plugin.cfg; then
+  sed -i '/^acl:acl$/a ipblocker:ipblocker' plugin.cfg
+fi
+
 make coredns
 cd $root_dir
+
+Corefile="./volumes/coredns/Corefile"
+mkdir -p ./volumes/coredns
+if [ ! -f "$Corefile" ]; then
+cp ./templates/Corefile $Corefile
+fi
 
 cd java/container-modules/coredns/
 ./gradlew build

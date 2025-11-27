@@ -29,7 +29,7 @@ services:
     build:
       context: ./container-modules/coredns
     container_name: coredns
-    user: "0:0"
+    user: "1000:1000"
     command: -conf /etc/coredns/Corefile
     networks:
       coredns_net:
@@ -39,7 +39,6 @@ services:
       - WS_SERVER_PORT=3001
     volumes:
       - ./volumes/coredns:/etc/coredns
-      - ./volumes/coredns/data:/tmp
     ports:
       - "5353:53/udp"
       - "5353:53/tcp"
