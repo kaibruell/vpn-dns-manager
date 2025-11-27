@@ -13,6 +13,10 @@ mkdir -p $wireguard_lib_dir
 cp -r wireguard-launcher.jar "$wireguard_lib_dir"
 cd $root_dir
 
+cd container-modules/coredns
+make coredns
+cd $root_dir
+
 cd java/container-modules/coredns/
 ./gradlew build
 cd build/libs/
