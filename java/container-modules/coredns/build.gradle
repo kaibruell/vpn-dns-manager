@@ -13,9 +13,18 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation 'org.rocksdb:rocksdbjni:9.9.3'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
 jar {
     archiveFileName = 'coredns-launcher.jar'
     manifest {
-	attributes 'Main-Class': 'org.coredns.container.CoreDNSLauncher'
+        attributes 'Main-Class': 'org.coredns.container.CoreDNSLauncher'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

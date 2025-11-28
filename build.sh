@@ -29,6 +29,9 @@ cd $root_dir
 
 Corefile="./volumes/coredns/Corefile"
 mkdir -p ./volumes/coredns
+mkdir -p ./volumes/coredns/ipblocker_db
+chown 1000:1000 ./volumes/coredns/ipblocker_db
+chmod 755 ./volumes/coredns/ipblocker_db
 if [ ! -f "$Corefile" ]; then
 cp ./templates/Corefile $Corefile
 fi

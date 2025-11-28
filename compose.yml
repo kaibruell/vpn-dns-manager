@@ -37,13 +37,19 @@ services:
     environment:
       - WS_SERVER_HOST=0.0.0.0
       - WS_SERVER_PORT=3001
+      - IPBLOCKER_DB_PATH=/etc/coredns/ipblocker_db
+      - IPBLOCKER_REST_URL=0.0.0.0
+      - IPBLOCKER_REST_PORT=8080
     volumes:
       - ./volumes/coredns:/etc/coredns
+      - ./volumes/coredns/ipblocker_db:/etc/coredns/ipblocker_db
     ports:
       - "5353:53/udp"
       - "5353:53/tcp"
+      - "8080:8080" # REST API Port
     expose:
       - "53" # DNS Service Port
+      - "8080" # REST API Port
     restart: unless-stopped
 
 
