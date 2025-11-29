@@ -15,15 +15,20 @@ services:
       - TZ=Etc/UTC
       - WG_POST_UP=iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
       - WG_POST_DOWN=iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+      - WG_MANAGER_REST_URL=0.0.0.0
+      - WG_MANAGER_REST_PORT=2233
+      - WG_AUTOSTART=true
     volumes:
       - ./volumes/wireguard/config:/config
     ports:
       - 0.0.0.0:51820:51820/udp # WireGuard VPN public
+      - 0.0.0.0:2233:2233 # REST API Port
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
     expose:
       - "51820" # Wireguard Service Port
+      - "2233" # REST API Port
 
   coredns:
     build:
@@ -39,17 +44,17 @@ services:
       - WS_SERVER_PORT=3001
       - IPBLOCKER_DB_PATH=/etc/coredns/ipblocker_db
       - IPBLOCKER_REST_URL=0.0.0.0
-      - IPBLOCKER_REST_PORT=8080
+      - IPBLOCKER_REST_PORT=2244
     volumes:
       - ./volumes/coredns:/etc/coredns
       - ./volumes/coredns/ipblocker_db:/etc/coredns/ipblocker_db
     ports:
       - "5353:53/udp"
       - "5353:53/tcp"
-      - "8080:8080" # REST API Port
+      - "2244:2244" # REST API Port
     expose:
       - "53" # DNS Service Port
-      - "8080" # REST API Port
+      - "2244" # REST API Port
     restart: unless-stopped
 
 

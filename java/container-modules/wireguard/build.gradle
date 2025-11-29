@@ -13,9 +13,18 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation 'com.google.code.gson:gson:2.13.2'
+}
+
 jar {
     archiveFileName = 'wireguard-launcher.jar'
+    duplicatesStrategy = 'exclude'
     manifest {
         attributes 'Main-Class': 'org.wireguard.container.WireGuardLauncher'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

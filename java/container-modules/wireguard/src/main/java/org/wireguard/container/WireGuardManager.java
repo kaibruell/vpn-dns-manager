@@ -19,4 +19,3 @@ public class WireGuardLauncher {
         Thread.sleep(Long.MAX_VALUE); // Keep process alive
     }
 }
-
